@@ -1,8 +1,5 @@
 package model;
 
-import java.util.Date;
-import java.sql.Timestamp;
-
 public class task {
 
 	private int task_id;

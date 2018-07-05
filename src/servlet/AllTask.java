@@ -14,7 +14,7 @@ import doa.DataAccess;
 /**
  * Servlet implementation class AllTask
  */
-@WebServlet("/AllTask")
+@WebServlet(name = "AllTask", urlPatterns = {"/AllTask"})
 public class AllTask extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -25,10 +25,10 @@ public class AllTask extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
-		request.setAttribute("AllTasks", DataAccess.getAll());
+		request.setAttribute("AllTask", DataAccess.getAll());
 		RequestDispatcher rd = request.getRequestDispatcher("AllTask.jsp");
 		rd.forward(request, response);
 	}
@@ -36,9 +36,17 @@ public class AllTask extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	/*protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
-	}*/
+		processRequest(request, response);
+
+	}
 
 }

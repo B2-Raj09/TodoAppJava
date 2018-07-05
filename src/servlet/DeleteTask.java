@@ -12,37 +12,42 @@ import doa.DataAccess;
 /**
  * Servlet implementation class DeleteTask
  */
-@WebServlet("/delete")
+//@WebServlet("/delete")
 public class DeleteTask extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteTask() {
+   /* public DeleteTask() {
         super();
         // TODO Auto-generated constructor stub
-    }
+    }*/
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
+	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String idTemp = request.getParameter("task_id");
-		int id = Integer.parseInt(idTemp);
+		System.out.println(idTemp);
+		int task_id = Integer.parseInt(idTemp);
 		DataAccess da = new DataAccess();
-		da.delete(id);
+		da.delete(task_id);
 		response.sendRedirect("/TodoApp/AllTask");
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	/*protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        processRequest(request, response);
+    }
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
-	}*/
+		processRequest(request, response);
+	}
 
 }

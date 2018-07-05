@@ -19,18 +19,22 @@
 <%
 String task_name = request.getParameter("task_name");
 String is_done = request.getParameter("is_done");
-/* int completed = Integer.parseInt(comp); */
 Date dateTemp = new Date(System.currentTimeMillis());
-SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY/MM/DD");
+SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+task t;
 String createdAt = dateFormat.format(dateTemp.getTime());
-String doneAt = dateFormat.format(dateTemp.getTime());
 
-task t = new task(0, task_name, is_done, createdAt, doneAt);
+/* if(is_done == "1"){
+String doneAt = dateFormat.format(dateTemp.getTime());
+	t = new task(0, task_name, is_done, createdAt, doneAt);
+}else {*/
+	t = new task(0, task_name, is_done, createdAt, null); 
+
 DataAccess da = new DataAccess();
 da.addNew(t);
 
 response.sendRedirect("/TodoApp/AllTask");
 %>
-
+createdAt
 </body>
 </html>

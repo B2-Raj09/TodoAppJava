@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +16,7 @@
 		<th>Is Completed</th>
 		<th>Created At</th>
 		<th>Completed At</th>
-		<c:forEach items="${AllTasks}" var="task">
+		<c:forEach var="task" items="${AllTask}">
 			<tr>
 				<td>${task.task_id}</td>
 				<td>${task.task_name}</td>
@@ -24,8 +24,8 @@
 				<td>${task.createdAt }</td>
 				<td>${task.doneAt }</td>
 				<td>
-					<a href="edit?id=${task.task_id }">Edit</a>
-					<a href="delete?id=${task.task_id }">Delete</a>
+					<a href="edit?task_id=${task.task_id }">Edit</a>
+					<a href="delete?task_id=${task.task_id }">Delete</a>
 				</td>
 			</tr>
 		</c:forEach>
